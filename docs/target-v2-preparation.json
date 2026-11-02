@@ -1,0 +1,37 @@
+{
+  "source": "VideoResult/1.mp4",
+  "sourceSha256": "56162c0250b6525326b114ea448da3f2578a14ebdee30081a52037643af4ffe5",
+  "reviewFrame": "frame-002.jpg, approximately 1.5 seconds; before AR overlay appears",
+  "sourceQuadIn390pxReviewImage": [
+    [
+      26,
+      400
+    ],
+    [
+      311,
+      390
+    ],
+    [
+      310,
+      552
+    ],
+    [
+      39,
+      568
+    ]
+  ],
+  "operation": "Perspective rectification only; no generated/repainted design or contrast enhancement.",
+  "image": "public/content/card-v2/target.png",
+  "dimensions": [
+    600,
+    356
+  ],
+  "imageSha256": "324a15c75a05e01e055027ba2c3bad65d396f7b0a9d6b7c7c80d6c4f7f516c23",
+  "compiledSha256": "67297eabdebf4d72ce4e50c398c5eef7773f74ea88fd1e81175926ed4248a198",
+  "compiler": "mind-ar 1.2.5 OfflineCompiler, CPU, @napi-rs/canvas 0.1.80",
+  "trackingPoints": [
+    23,
+    23
+  ],
+  "note": "Derived from actual card in supplied recording. Replay comparisons exclude samples before 2 seconds; same-recording replay is not independent physical-device validation."
+}

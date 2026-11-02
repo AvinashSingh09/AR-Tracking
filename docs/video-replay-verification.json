@@ -1,0 +1,338 @@
+{
+  "date": "2026-11-02",
+  "method": "Desktop Chrome full viewer with recorded camera-region video replayed through a 768x1324 canvas MediaStream. Baseline uses v1 target and previous SDK/render profile overrides in current harness; revised uses v2 and current profile. Includes pre-rendered AR overlays in source; not a raw-camera or independent mobile test.",
+  "sampledFreshMatches": {
+    "baseline": {
+      "success": 120,
+      "total": 258
+    },
+    "revised": {
+      "success": 221,
+      "total": 258
+    },
+    "excludedReferenceIntervalSeconds": [
+      0,
+      2
+    ],
+    "sampleRate": 12
+  },
+  "pairedBrowserReplay": {
+    "baseline": {
+      "events": [
+        {
+          "type": "found",
+          "time": 2.3261
+        },
+        {
+          "type": "lost",
+          "time": 2.8293
+        },
+        {
+          "type": "found",
+          "time": 2.9357
+        },
+        {
+          "type": "lost",
+          "time": 3.8338
+        },
+        {
+          "type": "found",
+          "time": 3.95
+        },
+        {
+          "type": "lost",
+          "time": 4.0563
+        },
+        {
+          "type": "found",
+          "time": 4.1426
+        },
+        {
+          "type": "lost",
+          "time": 4.8932
+        },
+        {
+          "type": "found",
+          "time": 5.3094
+        },
+        {
+          "type": "lost",
+          "time": 5.5581
+        },
+        {
+          "type": "found",
+          "time": 6.3374
+        },
+        {
+          "type": "lost",
+          "time": 7.1258
+        },
+        {
+          "type": "found",
+          "time": 7.4976
+        },
+        {
+          "type": "lost",
+          "time": 7.9893
+        },
+        {
+          "type": "found",
+          "time": 8.385
+        },
+        {
+          "type": "lost",
+          "time": 8.7414
+        },
+        {
+          "type": "found",
+          "time": 8.8236
+        },
+        {
+          "type": "lost",
+          "time": 8.9238
+        },
+        {
+          "type": "found",
+          "time": 9.1249
+        },
+        {
+          "type": "lost",
+          "time": 9.5505
+        },
+        {
+          "type": "found",
+          "time": 9.608
+        },
+        {
+          "type": "lost",
+          "time": 9.7575
+        },
+        {
+          "type": "found",
+          "time": 9.8593
+        },
+        {
+          "type": "lost",
+          "time": 9.9851
+        },
+        {
+          "type": "found",
+          "time": 10.1149
+        },
+        {
+          "type": "lost",
+          "time": 11.0284
+        },
+        {
+          "type": "found",
+          "time": 11.2675
+        },
+        {
+          "type": "lost",
+          "time": 11.4982
+        },
+        {
+          "type": "found",
+          "time": 11.5871
+        },
+        {
+          "type": "lost",
+          "time": 12.0503
+        },
+        {
+          "type": "found",
+          "time": 12.1657
+        },
+        {
+          "type": "lost",
+          "time": 12.3057
+        },
+        {
+          "type": "found",
+          "time": 12.4432
+        },
+        {
+          "type": "lost",
+          "time": 13.6919
+        },
+        {
+          "type": "found",
+          "time": 13.8777
+        },
+        {
+          "type": "lost",
+          "time": 14.2932
+        },
+        {
+          "type": "found",
+          "time": 14.3388
+        },
+        {
+          "type": "lost",
+          "time": 14.5409
+        },
+        {
+          "type": "found",
+          "time": 14.5879
+        },
+        {
+          "type": "lost",
+          "time": 15.6603
+        },
+        {
+          "type": "found",
+          "time": 15.8018
+        },
+        {
+          "type": "lost",
+          "time": 16.3448
+        },
+        {
+          "type": "found",
+          "time": 16.4356
+        },
+        {
+          "type": "lost",
+          "time": 16.6415
+        },
+        {
+          "type": "found",
+          "time": 17.1653
+        },
+        {
+          "type": "lost",
+          "time": 17.5333
+        },
+        {
+          "type": "found",
+          "time": 17.5965
+        },
+        {
+          "type": "lost",
+          "time": 17.896
+        },
+        {
+          "type": "found",
+          "time": 18.1024
+        },
+        {
+          "type": "lost",
+          "time": 18.3542
+        },
+        {
+          "type": "found",
+          "time": 18.4475
+        },
+        {
+          "type": "lost",
+          "time": 19.2005
+        },
+        {
+          "type": "found",
+          "time": 19.6909
+        },
+        {
+          "type": "lost",
+          "time": 19.8084
+        },
+        {
+          "type": "found",
+          "time": 20.0867
+        },
+        {
+          "type": "lost",
+          "time": 20.8991
+        },
+        {
+          "type": "found",
+          "time": 21.0519
+        },
+        {
+          "type": "lost",
+          "time": 21.1633
+        },
+        {
+          "type": "found",
+          "time": 21.7812
+        },
+        {
+          "type": "lost",
+          "time": 22.5105
+        },
+        {
+          "type": "found",
+          "time": 23.6939
+        },
+        {
+          "type": "lost",
+          "time": 24.1654
+        }
+      ],
+      "ended": true,
+      "lossEventsBetween2And23_5": 30
+    },
+    "revised": {
+      "events": [
+        {
+          "type": "found",
+          "time": 2.418
+        },
+        {
+          "type": "lost",
+          "time": 6.1529
+        },
+        {
+          "type": "found",
+          "time": 6.217
+        },
+        {
+          "type": "lost",
+          "time": 7.1915
+        },
+        {
+          "type": "found",
+          "time": 7.3144
+        },
+        {
+          "type": "lost",
+          "time": 11.131
+        },
+        {
+          "type": "found",
+          "time": 11.1777
+        },
+        {
+          "type": "lost",
+          "time": 12.0737
+        },
+        {
+          "type": "found",
+          "time": 12.1217
+        },
+        {
+          "type": "lost",
+          "time": 22.5461
+        },
+        {
+          "type": "found",
+          "time": 22.9132
+        },
+        {
+          "type": "lost",
+          "time": 22.9775
+        },
+        {
+          "type": "found",
+          "time": 23.4919
+        },
+        {
+          "type": "lost",
+          "time": 24.168
+        }
+      ],
+      "ended": true,
+      "lossEventsBetween2And23_5": 6
+    }
+  },
+  "physicalRetestComplete": false
+}

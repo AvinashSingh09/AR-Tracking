@@ -81,15 +81,17 @@ async function start() {
     if (disposed) return;
     cameraVideo.width = cameraVideo.videoWidth; cameraVideo.height = cameraVideo.videoHeight;
     send('status', { message: 'Preparing image tracking…' });
-    controller = new Controller({ inputWidth: cameraVideo.videoWidth, inputHeight: cameraVideo.videoHeight, maxTrack: 1,
+    controller = new Controller({ inputWidth: cameraVideo.videoWidth, inputHeight: cameraVideo.videoHeight, maxTrack: 1, ...tracking.sdk,
       onUpdate: (data: any) => {
         if (disposed || data.type !== 'updateMatrix') return;
         const found = data.worldMatrix !== null;
         root.visible = found;
-        if (found) {
+        // MindAR republishes its cached pose during tolerated tracking misses.
+        // Do not feed those cached samples back into presentation smoothing.
+        if (found && controller.trackingStates[data.targetIndex]?.isTracking) {
           measuredPose.fromArray(data.worldMatrix).multiply(targetToAnchor);
           pose.setTarget(measuredPose);
-        } else pose.reset();
+        } else if (!found) pose.reset();
         if (found !== tracked) { tracked = found; send(found ? 'found' : 'lost'); void sync(); }
       }
     });

@@ -2,8 +2,9 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { Matrix4, Quaternion, Vector3 } from 'three';
 import { PoseSmoother } from '../src/pose-smoother.mjs';
+import { tracking } from '../src/tracking-profile.mjs';
 
-const settings = { stationaryHalfLife: .065, movingHalfLife: .012, translationResponse: .04, rotationResponse: .12 };
+const settings = tracking.smoothing;
 function target(x, angle = 0, width = 1) {
   return new Matrix4().compose(new Vector3(x * width, 0, -2 * width), new Quaternion().setFromAxisAngle(new Vector3(0, 1, 0), angle), new Vector3(width, width, width));
 }

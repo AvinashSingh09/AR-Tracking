@@ -2,6 +2,8 @@
 
 2 November 2026 — response to slight jitter reported during physical-card use.
 
+**Follow-up:** The subsequent screen recording revealed recognition dropouts that presentation smoothing alone could not solve. Current code uses a new card reference, tuned SDK tolerances/filtering, and a lower-lag profile in `src/tracking-profile.mjs`. See [recording diagnosis](VIDEO_TRACKING_DIAGNOSIS.md) for the new evidence. The initial implementation/profile/deployment below is retained as historical context.
+
 The original viewer copied each MindAR pose directly to the scene root when a tracking update arrived. The revised viewer retains the latest measured pose and smoothly approaches it on each rendered frame. This reduces small pose fluctuations and visible stepping between tracker updates without changing the camera feed or the model's intentional animation.
 
 ## Implementation

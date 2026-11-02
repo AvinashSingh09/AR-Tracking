@@ -5,6 +5,7 @@ dist/
 output/
 *.local
 /.codex-review/
+/VideoResult/
 /*.mp4
 /Visiting Card.jpeg
 .env

@@ -20,7 +20,9 @@ export function createScene(video: HTMLVideoElement, includeCard = false) {
   const poster = new THREE.TextureLoader().load(content.poster); poster.colorSpace = THREE.SRGBColorSpace;
   const material = new THREE.MeshBasicMaterial({ map: poster, side: THREE.DoubleSide });
   const panel = new THREE.Mesh(new THREE.PlaneGeometry(.86, .86 / content.videoAspect), material);
-  panel.rotation.x = Math.PI / 2; panel.position.set(0, .23, .32); root.add(panel);
+  // Face the same viewing side as an upright visiting card. The previous 90°
+  // rotation put the screen edge-on and amplified small pitch errors.
+  panel.position.set(0, .58, .06); root.add(panel);
   if (includeCard) {
     const card = new THREE.TextureLoader().load(content.image); card.colorSpace = THREE.SRGBColorSpace;
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1 / content.aspect), new THREE.MeshBasicMaterial({ map: card, side: THREE.DoubleSide }));

@@ -35,10 +35,10 @@ npm run dev:https -- --port 5174
 
 Use the HTTPS Network URL printed by Vite on a phone connected to the same network. The development certificate is self-signed: the phone/browser must trust it before this can be treated as a valid camera test. If the browser still rejects capture, use a trusted HTTPS preview deployment or a properly trusted local certificate. This setup does not provide a public URL or a production certificate. Check local firewall access if the URL cannot be reached.
 
-1. Print `public/content/card-v1/target.jpg`, or show it on another screen. The phone cannot scan an image displayed on its own screen.
+1. Use the actual 360 Bright Media card. For a separate print/display test, use `public/content/card-v2/target.png` on another screen. The phone cannot scan an image displayed on its own screen.
 2. Open the viewer and tap Start. Allow camera access.
 3. Keep the entire target visible, add diffuse light, and avoid glare.
-4. Tilt the card slightly to see the upright video panel. Viewed exactly front-on, an upright panel can appear edge-on.
+4. The video panel appears above the card and faces the same viewing side as its artwork; it should remain visible when the card is held upright toward the phone.
 5. Check that the gold sculpture animates and the video visibly changes. The six-second sample is deliberately silent.
 6. Remove the card: the scene should disappear and playback should pause. Return it: playback should continue unless manually paused or completed.
 7. Use Replay when the sample ends, then use × to exit. The camera should stop on exit or when the page is hidden. Browser fullscreen may hide address bars; the camera still fills the viewport when that API is unavailable.
@@ -51,6 +51,7 @@ Record Android Chrome and iPhone Safari results in `docs/PHASE_0_STATUS.md`. Gat
 - `Visiting Card.jpeg`: original supplied photograph, untouched.
 - `public/content/card-v1/target.jpg`: perspective-straightened, cropped, upright tracking candidate.
 - `public/content/card-v1/target.mind`: compiled feature data for that exact candidate.
+- `public/content/card-v2/target.png` and `target.mind`: active reference derived from a clear, unaugmented view of the real card in the owner's screen recording. Version 1 is retained for comparisons; runtime uses version 2.
 - `public/content/card-v1/demo.mp4` and `poster.jpg`: locally authored procedural motion graphics for prototype testing, not the reference PlugXR recording.
 - The gold orbital sculpture is procedural Three.js geometry, not a final character/avatar or a GLB model.
 
@@ -60,13 +61,13 @@ The supplied card photograph contains large dark regions and photographed reflec
 
 Paths and aspect ratios are in `src/config.ts`. Scene placement, sculpture, lighting, and video geometry are in `src/scene.ts`. This prototype uses a typed configuration module; the full validated invitation-manifest system is deferred until after G0.
 
-If changing target artwork, replace the prepared JPG and compile it again:
+If changing target artwork, replace the active prepared PNG and compile it again:
 
 ```powershell
 npm run compile-target
 ```
 
-The compiler uses MindAR's CPU OfflineCompiler and an explicit `canvas` override to `@napi-rs/canvas`, avoiding a platform-specific node-canvas build. Preparation coordinates/checksums and compilation feature counts are recorded in `docs/target-preparation.json`. Do not replace `.mind` data without matching the displayed guide and approved print.
+The compiler uses MindAR's CPU OfflineCompiler and an explicit `canvas` override to `@napi-rs/canvas`, avoiding a platform-specific node-canvas build. Current preparation coordinates and checksums are in `docs/target-v2-preparation.json`; the original version's record is `docs/target-preparation.json`. The compiler accepts an optional image path and metadata path, for example `npm run compile-target -- public/content/card-v1/target.jpg docs/target-preparation.json`. Do not replace `.mind` data without matching the reference and its artwork aspect ratio.
 
 ## Checks and architecture
 
