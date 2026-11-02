@@ -1,10 +1,11 @@
 export const content = {
-  title: '360 Bright Media',
-  target: '/content/card-v2/target.mind',
-  image: '/content/card-v2/target.png',
+  title: 'DMCC Smarter Chemistry',
+  target: '/content/dmcc-v1/target.mind',
+  image: '/content/dmcc-v1/target.png',
+  scanHint: 'Point your camera at the DMCC logo.',
   video: '/content/card-v1/demo.mp4',
   poster: '/content/card-v1/poster.jpg',
-  aspect: 600 / 356,
+  aspect: 810 / 380,
   videoAspect: 640 / 360,
 };
 

@@ -1,0 +1,74 @@
+{
+  "source": "DMCC Smarter Chemistry Logo.png",
+  "sourceSha256": "2415720671067e7923305dafa3368ab0a88b2dde6e192e894e0263b7be0cc215",
+  "sourceDimensions": [
+    981,
+    1604
+  ],
+  "sourceCropBox": [
+    80,
+    620,
+    890,
+    1000
+  ],
+  "operation": "Crop white margins around the existing logo only. No logo repainting, contrast changes, or resampling.",
+  "image": "public/content/dmcc-v1/target.png",
+  "dimensions": [
+    810,
+    380
+  ],
+  "note": "The logo region is the target. It can be recognized within the full supplied artwork; the blank page and rounded outer border are not required. Compilation and synthetic recognition do not establish physical print reliability.",
+  "imageSha256": "8f4bd2b61a38ffd6c6b5afed27901ccee73d315cb5d2c82b5d8e34c010e1be85",
+  "compiledSha256": "b93a7c2c974f3536980e06c6e22c069db086a383fc47f7fbb52c94e32a43eaa4",
+  "trackingPoints": [
+    35,
+    37
+  ],
+  "compiler": "mind-ar 1.2.5 OfflineCompiler; CPU; @napi-rs/canvas 0.1.80",
+  "featureSummary": [
+    {
+      "matching": [
+        {
+          "maxima": 59,
+          "minima": 92
+        },
+        {
+          "maxima": 82,
+          "minima": 119
+        },
+        {
+          "maxima": 42,
+          "minima": 90
+        },
+        {
+          "maxima": 43,
+          "minima": 73
+        },
+        {
+          "maxima": 51,
+          "minima": 61
+        },
+        {
+          "maxima": 33,
+          "minima": 54
+        },
+        {
+          "maxima": 29,
+          "minima": 38
+        }
+      ],
+      "tracking": [
+        {
+          "width": 546,
+          "height": 256,
+          "points": 35
+        },
+        {
+          "width": 273,
+          "height": 128,
+          "points": 37
+        }
+      ]
+    }
+  ]
+}

@@ -1,8 +1,9 @@
 import './style.css';
+import { content } from './config';
 
 document.querySelector('#app')!.innerHTML = [
   '<main id="landing"><button id="start" type="button">Start</button><p id="error" role="alert" hidden></p></main>',
-  '<section id="scanner" aria-label="Card scanner" hidden><div id="viewport"></div>',
+  '<section id="scanner" aria-label="Image target scanner" hidden><div id="viewport"></div>',
   '<button id="exit" type="button" aria-label="Exit camera">×</button>',
   '<div id="feedback"><p id="status" role="status" aria-live="polite"></p>',
   '<button id="play" type="button" hidden>Tap to play</button></div></section>',
@@ -42,7 +43,7 @@ $('start').addEventListener('click', () => {
     void $('scanner').requestFullscreen({ navigationUI: 'hide' }).catch(() => {});
   }
   frame = document.createElement('iframe');
-  frame.title = 'Live camera and visiting card experience';
+  frame.title = 'Live camera and image AR experience';
   frame.allow = 'camera; autoplay'; frame.src = '/ar.html';
   $('viewport').replaceChildren(frame);
   timeout = setTimeout(() => {
@@ -53,7 +54,7 @@ addEventListener('message', e => {
   if (!frame || e.origin !== location.origin || e.source !== frame.contentWindow || e.data?.source !== 'ar-invite') return;
   const { type, message } = e.data;
   if (type === 'status') status(message);
-  if (type === 'ready' || type === 'lost') { clearTimeout(timeout); status('Point your camera at the card.'); }
+  if (type === 'ready' || type === 'lost') { clearTimeout(timeout); status(content.scanHint); }
   if (type === 'found') { clearTimeout(timeout); status(''); }
   if (type === 'playing') { $('play').hidden = true; status(''); }
   if (type === 'buffering') status('Loading video…');

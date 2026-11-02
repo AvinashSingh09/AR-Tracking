@@ -8,6 +8,7 @@ output/
 /VideoResult/
 /*.mp4
 /Visiting Card.jpeg
+/DMCC Smarter Chemistry Logo.png
 .env
 .env.*
 !.env.example
