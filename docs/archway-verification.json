@@ -24,5 +24,71 @@
     "existingTestsPassed": 6
   },
   "screenshots": "Ignored output/playwright/archway-{found,lost,reacquired,rotated}.png",
-  "note": "The overlay fills the target plane. The source images remain byte-identical; their one-pixel height difference is fitted by texture mapping."
+  "note": "The overlay fills the target plane. The source images remain byte-identical; their one-pixel height difference is fitted by texture mapping.",
+  "liveDeployment": {
+    "url": "https://ar-invite.onrender.com",
+    "serviceId": "srv-dbk2qv2jnfac739e7k70",
+    "deployId": "dep-dbk6nd95efls73enjmag",
+    "appCommit": "1bcdd5d6fea559d82c62de18b7d7e5444f349f87",
+    "status": "live",
+    "http": [
+      {
+        "path": "/",
+        "status": 200,
+        "type": "text/html; charset=utf-8",
+        "bytes": 662,
+        "matchesBuild": true,
+        "sha256": "6eaade50d6efd873ac2600d7975c2fb8a370cb88f2c085db2dc1199e67f3c8d5"
+      },
+      {
+        "path": "/ar.html",
+        "status": 200,
+        "type": "text/html; charset=utf-8",
+        "bytes": 556,
+        "matchesBuild": true,
+        "sha256": "adf1f24557be28c32fb7aa58225222dcb6ff9158e642aa020b93228c634faac2"
+      },
+      {
+        "path": "/content/archway-v1/target.png",
+        "status": 200,
+        "type": "image/png",
+        "bytes": 2114918,
+        "matchesBuild": true,
+        "sha256": "e42f1fcbf5fb0972053959e1d716aa4165b45ac1bca727ff3e2ab5a5c6120c81"
+      },
+      {
+        "path": "/content/archway-v1/target.mind",
+        "status": 200,
+        "type": "binary/octet-stream",
+        "bytes": 520003,
+        "matchesBuild": true,
+        "sha256": "083b21967ca5c23938ca53f36bbc68a6e52f5a8e517c1ae4edf9e447866136ef"
+      },
+      {
+        "path": "/content/archway-v1/overlay.png",
+        "status": 200,
+        "type": "image/png",
+        "bytes": 2229992,
+        "matchesBuild": true,
+        "sha256": "753b40b352717611250ba50433344c9ad8828efe186b4fcbbc9f5ffc1ad165e1"
+      }
+    ],
+    "browser": {
+      "secureContext": true,
+      "initialVisibleButtons": [
+        "Start"
+      ],
+      "backgroundRecognized": true,
+      "overlayRequested": true,
+      "cameraFrame": [
+        390,
+        844
+      ],
+      "videoElements": 1,
+      "oldMediaRequests": [],
+      "cameraTracksStoppedOnExit": true,
+      "pageErrors": []
+    },
+    "scope": "Desktop Chrome, synthetic camera containing the actual plain background. Physical phone validation remains pending."
+  }
 }

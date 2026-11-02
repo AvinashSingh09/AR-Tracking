@@ -24,12 +24,12 @@ The site was created through the Render connector after the owner confirmed My W
 
 The deployment needs `index.html`, `ar.html`, `src/`, `public/`, `vite.config.js`, `tsconfig.json`, `package.json`, `package-lock.json`, and `.node-version`. Include `tests/`, `scripts/`, README, and relevant project documentation for maintenance. The `.mind` target is already compiled and checked into `public/`; building does not recompile it.
 
-The original reference MP4, raw card photograph, review stills, browser artifacts, local TLS certificates, and `node_modules` are excluded from Git. The prepared card target and generated sample video inside `public/content/card-v1/` remain included because the running viewer uses them.
+The original reference MP4, raw card photograph, review stills, browser artifacts, local TLS certificates, and `node_modules` are excluded from Git. The supplied `NEW IMAGES` directory stays local. The active background, compiled target, and invitation overlay are published under `public/content/archway-v1/`. Earlier card, DMCC, and video assets remain as history and are not loaded by the current viewer.
 
 ## Routing and browser requirements
 
 - Serve both `/` and `/ar.html` as their actual HTML files. This is a multi-page build; do not replace `/ar.html` with an SPA catch-all.
-- Missing targets or videos must return a real error rather than the landing HTML.
+- Missing targets or overlay images must return a real error rather than the landing HTML.
 - The camera scanner is a same-origin iframe. Do not set `X-Frame-Options: DENY` or `frame-ancestors 'none'`; those would block it. A same-origin frame policy is compatible.
 - If adding a Permissions-Policy, permit `camera=(self)` and preserve same-origin autoplay/fullscreen support. The application does not request microphone access.
 - No custom domain is required for initial testing; the assigned `onrender.com` HTTPS address is sufficient.
@@ -38,11 +38,11 @@ The original reference MP4, raw card photograph, review stills, browser artifact
 ## Verification after deployment
 
 1. Wait for the Render deployment to report live; record the actual service ID and URL.
-2. Fetch `/`, `/ar.html`, `/content/card-v1/target.mind`, and `/content/card-v1/demo.mp4` through the public HTTPS origin.
+2. Fetch `/`, `/ar.html`, `/content/archway-v1/target.mind`, `/content/archway-v1/target.png`, and `/content/archway-v1/overlay.png` through the public HTTPS origin.
 3. Check HTML/media types, TLS, and actual media seeking/range delivery where applicable.
 4. Open the public URL: only Start should appear; tapping opens the edge-to-edge camera.
-5. Re-run synthetic-feed tracking/video and camera-exit checks against that public artifact.
-6. Test the physical card on Android Chrome and iPhone Safari. A live deployment does not close the outstanding physical-device G0 gate.
+5. Re-run synthetic-feed recognition, overlay alignment, and camera-exit checks against that public artifact.
+6. Test the physical target on Android Chrome and iPhone Safari. A live deployment does not close the outstanding physical-device G0 gate.
 
 ## Current deployment status
 
@@ -54,19 +54,19 @@ The original reference MP4, raw card photograph, review stills, browser artifact
 | Service ID | `srv-dbk2qv2jnfac739e7k70` |
 | Initial deploy ID | `dep-dbk2qvijnfac739e7kug` |
 | Initial deployed app commit | `1a5178c23a616710f280193c5505781552c37b68` |
-| Current deployed app commit | `1d7bab42b43d70fff6849cb61a733bbfe8409eac` |
-| Current deploy ID | `dep-dbk3s115efls73eka2fg` |
+| Current deployed app commit | `1bcdd5d6fea559d82c62de18b7d7e5444f349f87` |
+| Current deploy ID | `dep-dbk6nd95efls73enjmag` |
 | Deployment status | `live` |
 | Dashboard | [Render service](https://dashboard.render.com/static/srv-dbk2qv2jnfac739e7k70) |
 
-The Render build used Node 22.23.4 and completed successfully. Public HTTPS fetches returned the correct viewer/scanner HTML, compiled target, card image, MP4, poster, and icon. HTML comparison normalized Windows/Linux line endings; binary assets matched the local build exactly. MP4 byte-range requests returned 206 with the expected 1024-byte response; a nonexistent media resource returned 404.
+The Render build used Node 22.23.4 and completed successfully. Public HTTPS fetches returned the correct viewer/scanner HTML, compiled archway target, original background image, and invitation overlay. HTML comparison normalized Windows/Linux line endings; binary assets matched the local build exactly. A brief stale scanner HTML response immediately after deployment resolved on the subsequent normal-path request; all final comparisons passed.
 
-Desktop Chrome verification against the public URL confirmed a secure context, exactly one initial Start button, no pre-start camera frame, real tracker acquisition from a synthetic camera feed, decoded 640px content video with advancing playback time, a 1280×900 frame filling the viewport, and ended camera tracks after exit. No JavaScript page or console errors were observed. The JSON evidence is in `docs/render-verification.json`; screenshot inspection artifacts remain in ignored `output/`.
+Desktop Chrome verification against the public URL confirmed a secure context, exactly one initial Start button, target acquisition from a synthetic camera feed, a 390x844 frame filling the viewport, the invitation overlay requested, no previous video or DMCC requests, and ended camera tracks after exit. No JavaScript page errors were observed. Local simulation also verified rotated-target alignment, loss/reacquisition, and recovery from an unavailable overlay image. The JSON evidence is in `docs/archway-verification.json`; screenshot inspection artifacts remain in ignored `output/playwright/`.
 
-Physical-card recognition, lighting tolerance, and Android/iPhone performance remain unverified. Deployment does not close G0. Future documentation-only commits can use `[skip render]` to avoid an unnecessary rebuild; application changes should deploy normally through the configured commit trigger.
+Physical-target recognition, lighting tolerance, and Android/iPhone performance remain unverified. Deployment does not close G0. Future documentation-only commits can use `[skip render]` to avoid an unnecessary rebuild; application changes should deploy normally through the configured commit trigger.
 
-The active target is now the DMCC Smarter Chemistry logo at `/content/dmcc-v1/`. Its 810×380 reference crops white margins from the supplied PNG without altering logo detail; it contains 35 and 37 tracking points at the compiler's tracking scales. Page metadata, scan hint, aspect ratio, and compiler defaults match the new target. Current verification is in `dmcc-verification.json` and crop/checksum metadata in `dmcc-target-preparation.json`. Public HTML and target assets matched the build, and a desktop synthetic camera feed of the full supplied PNG triggered decoded video playback and correct camera shutdown on exit. Physical-phone validation of this logo remains pending.
+The active target is the full 941x1671 plain archway background supplied in `NEW IMAGES/Golden Archway Over a Futuristic Waterfront.png`. Its complete invitation counterpart, `NEW IMAGES/Unknown-16.png`, is mapped directly over the target plane. Both published PNGs are byte-identical to the originals. The overlay's one-pixel height difference is fitted by texture mapping. The compiler defaults, title, scan hint, and aspect ratio match the archway experience. It uses no video, sculpture, sound controls, or replay interface. Existing smoothing and the single-button/full-viewport flow are retained.
 
-The earlier card-v2 reference and tuning work are retained as history. Its paired recording-replay results do not apply to DMCC; see [Recording diagnosis](VIDEO_TRACKING_DIAGNOSIS.md) for those prior tests. The current smoothing profile and single-button/full-viewport flow are retained.
+Earlier DMCC and card records remain historical. Their video/replay and recording-based tuning results do not validate the new archway target. See `dmcc-verification.json`, `dmcc-target-preparation.json`, and [Recording diagnosis](VIDEO_TRACKING_DIAGNOSIS.md) for those prior tests.
 
 References checked on 2 November 2026: [Static Sites](https://render.com/docs/static-sites), [Node version configuration](https://render.com/docs/node-version).
