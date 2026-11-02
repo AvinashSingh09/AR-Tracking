@@ -10,8 +10,10 @@
 | `card-v2/target.png` and `target.mind` | Perspective-corrected card-only crop from a clear, unaugmented frame of the owner's local recording | Previous card target retained for comparison; full recording, hand, browser UI, and background are not published as assets. |
 | `dmcc-v1/target.png` and `target.mind` | Crop of the owner's `DMCC Smarter Chemistry Logo.png`, removing white margins without altering logo detail | Current active target; replaces the card reference in viewer configuration. Original PNG stays local. Crop/checksums/features are in `dmcc-target-preparation.json`. |
 | `demo.mp4`, `poster.jpg` | Locally generated grid, rings, text, and animated progress line; 640×360, 24fps, 6 seconds, no audio | Clearly labelled prototype content. |
+| `unbranded-v1/demo.mp4`, `poster.jpg` | Locally generated grid, orbital rings, moving dot, and progress line; 640×360, 24fps, 6 seconds, no audio or text | Current playback media. Replaces branded media in viewer configuration; reproducible with `scripts/generate-demo.py`. |
 | Gold orbital sculpture | Procedural icosahedron, torus rings, and base in `src/scene.ts` | Placeholder 3D content. No extracted/copied character from reference video. |
 | `favicon.svg` | Simple project-authored text/circle mark | Prototype icon, not an approved replacement for the supplied brand logo. |
+| `ar-icon.svg` | Project-authored circles and orbital shape, with no text | Current browser icon, replacing the previous numbered icon. |
 | Fonts | System Segoe UI/sans-serif stack | No external font network requests. No font files redistributed. |
 
 The PlugXR reference video is not bundled into the web application. Final visual identity, model, video/music, and redistribution rights remain content-owner inputs before a public release.

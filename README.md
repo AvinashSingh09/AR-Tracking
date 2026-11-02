@@ -54,7 +54,7 @@ Record Android Chrome and iPhone Safari results in `docs/PHASE_0_STATUS.md`. Gat
 - `public/content/card-v2/target.png` and `target.mind`: previous card reference, retained for comparisons.
 - `DMCC Smarter Chemistry Logo.png`: original new supplied artwork, untouched and kept local.
 - `public/content/dmcc-v1/target.png` and `target.mind`: active reference, cropped to the existing logo to remove extensive white margins. No design details were repainted or generated. This is the only target loaded by the viewer.
-- `public/content/card-v1/demo.mp4` and `poster.jpg`: locally authored procedural motion graphics for prototype testing, not the reference PlugXR recording.
+- `public/content/unbranded-v1/demo.mp4` and `poster.jpg`: active six-second, silent, text-free procedural motion graphics. Generate them with `python scripts/generate-demo.py` (requires Pillow and ffmpeg). The earlier branded media is retained as a historical asset and is not loaded by the viewer.
 - The gold orbital sculpture is procedural Three.js geometry, not a final character/avatar or a GLB model.
 
 The active DMCC target contains 35 and 37 tracking points at the compiler's two tracking scales. That is descriptive feature data, not a phone reliability score. Recognition of the logo within the full supplied artwork passed a desktop synthetic-camera check; physical print/display trials remain necessary.

@@ -3,8 +3,8 @@ export const content = {
   target: '/content/dmcc-v1/target.mind',
   image: '/content/dmcc-v1/target.png',
   scanHint: 'Point your camera at the DMCC logo.',
-  video: '/content/card-v1/demo.mp4',
-  poster: '/content/card-v1/poster.jpg',
+  video: '/content/unbranded-v1/demo.mp4',
+  poster: '/content/unbranded-v1/poster.jpg',
   aspect: 810 / 380,
   videoAspect: 640 / 360,
 };
