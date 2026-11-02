@@ -1,0 +1,67 @@
+{
+  "source": "Visiting Card.jpeg",
+  "sourceSha256": "1a18ac120e072626d5e7a00db3c4f2c2bc27fff1cb28a7c2b7688b51e56dba2f",
+  "output": "target.jpg",
+  "outputSha256": "c199f7d8caf006df315fba1f70b4594be4227bdd341cab5f9815d1a02681dae4",
+  "dimensions": [
+    960,
+    570
+  ],
+  "operation": "Perspective rectification using source quad (20,10),(42,992),(581,972),(588,39), then 90 degrees counterclockwise rotation",
+  "note": "Photographic target candidate; final print recognition not yet verified.",
+  "compiler": "mind-ar 1.2.5 OfflineCompiler; CPU; @napi-rs/canvas 0.1.80",
+  "featureSummary": [
+    {
+      "matching": [
+        {
+          "maxima": 158,
+          "minima": 82
+        },
+        {
+          "maxima": 151,
+          "minima": 85
+        },
+        {
+          "maxima": 134,
+          "minima": 74
+        },
+        {
+          "maxima": 128,
+          "minima": 55
+        },
+        {
+          "maxima": 117,
+          "minima": 60
+        },
+        {
+          "maxima": 92,
+          "minima": 46
+        },
+        {
+          "maxima": 66,
+          "minima": 46
+        },
+        {
+          "maxima": 42,
+          "minima": 26
+        },
+        {
+          "maxima": 24,
+          "minima": 13
+        }
+      ],
+      "tracking": [
+        {
+          "width": 431,
+          "height": 256,
+          "points": 13
+        },
+        {
+          "width": 216,
+          "height": 128,
+          "points": 15
+        }
+      ]
+    }
+  ]
+}

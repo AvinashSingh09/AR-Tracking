@@ -80,4 +80,3 @@ The production bundle includes a large MindAR/TensorFlow chunk, generating Vite'
 Known Phase 0 boundaries: no final animated GLB, no final content approvals, no public hosting/QR, no admin/RSVP backend, no validated device support matrix, and no calibrated print-size measurements. Leaving/hiding AR tears down the session; a fresh or resumed session restarts the demo muted. Preferences and timeline survive target loss within a session, but are not persisted across complete session teardown. The complete PRD's resume-state persistence and other later-phase requirements are not yet complete.
 
 Dependency and asset notes are in `docs/ASSETS_AND_DEPENDENCIES.md`.
-

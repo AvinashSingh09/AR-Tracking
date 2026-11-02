@@ -1,0 +1,27 @@
+{
+  "name": "ar-invite",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "compile-target": "node scripts/compile-target.mjs",
+    "test": "node --test tests/policy.test.mjs",
+    "dev:https": "vite --mode https --host 0.0.0.0"
+  },
+  "overrides": {
+    "canvas": "npm:@napi-rs/canvas@0.1.80"
+  },
+  "dependencies": {
+    "mind-ar": "1.2.5",
+    "three": "0.160.0"
+  },
+  "devDependencies": {
+    "@types/three": "0.160.0",
+    "@vitejs/plugin-basic-ssl": "1.2.0",
+    "typescript": "7.0.2",
+    "vite": "6.4.5"
+  }
+}

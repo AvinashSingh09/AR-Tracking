@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.vite/
+.playwright-cli/
+output/
+*.local
+/.codex-review/
+/*.mp4
+/Visiting Card.jpeg
+.env
+.env.*
+!.env.example
