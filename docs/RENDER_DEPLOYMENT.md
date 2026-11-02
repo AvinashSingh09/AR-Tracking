@@ -54,8 +54,8 @@ The original reference MP4, raw card photograph, review stills, browser artifact
 | Service ID | `srv-dbk2qv2jnfac739e7k70` |
 | Initial deploy ID | `dep-dbk2qvijnfac739e7kug` |
 | Initial deployed app commit | `1a5178c23a616710f280193c5505781552c37b68` |
-| Current deployed app commit | `36cbee597e9b3e7753782e9bdb1e04adbf53f660` |
-| Current deploy ID | `dep-dbk3d7vb9u1s73cah040` |
+| Current deployed app commit | `1d7bab42b43d70fff6849cb61a733bbfe8409eac` |
+| Current deploy ID | `dep-dbk3s115efls73eka2fg` |
 | Deployment status | `live` |
 | Dashboard | [Render service](https://dashboard.render.com/static/srv-dbk2qv2jnfac739e7k70) |
 
@@ -65,6 +65,8 @@ Desktop Chrome verification against the public URL confirmed a secure context, e
 
 Physical-card recognition, lighting tolerance, and Android/iPhone performance remain unverified. Deployment does not close G0. Future documentation-only commits can use `[skip render]` to avoid an unnecessary rebuild; application changes should deploy normally through the configured commit trigger.
 
-The current app replaces the reference with card-v2 and tunes the native tracker/presentation response after diagnosing the owner's screen recording. It also corrects the video panel's viewing angle. Its live build, deployed v2 asset checks, and desktop synthetic-feed video/exit checks passed. Paired recording replays and their limitations are documented in [Recording diagnosis](VIDEO_TRACKING_DIAGNOSIS.md). Physical-card smoothness on the reporting phone remains to be retested.
+The active target is now the DMCC Smarter Chemistry logo at `/content/dmcc-v1/`. Its 810×380 reference crops white margins from the supplied PNG without altering logo detail; it contains 35 and 37 tracking points at the compiler's tracking scales. Page metadata, scan hint, aspect ratio, and compiler defaults match the new target. Current verification is in `dmcc-verification.json` and crop/checksum metadata in `dmcc-target-preparation.json`. Public HTML and target assets matched the build, and a desktop synthetic camera feed of the full supplied PNG triggered decoded video playback and correct camera shutdown on exit. Physical-phone validation of this logo remains pending.
+
+The earlier card-v2 reference and tuning work are retained as history. Its paired recording-replay results do not apply to DMCC; see [Recording diagnosis](VIDEO_TRACKING_DIAGNOSIS.md) for those prior tests. The current smoothing profile and single-button/full-viewport flow are retained.
 
 References checked on 2 November 2026: [Static Sites](https://render.com/docs/static-sites), [Node version configuration](https://render.com/docs/node-version).

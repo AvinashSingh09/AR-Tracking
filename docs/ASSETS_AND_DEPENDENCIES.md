@@ -7,7 +7,7 @@
 | `Visiting Card.jpeg` | User-supplied 360 Bright Media card photograph | Original retained in workspace; reproduction rights to be confirmed before public publishing. |
 | `target.jpg` | Geometric crop/rectification and 90-degree rotation of that photograph | Tracking candidate and guide. Coordinates and checksums are recorded. |
 | `target.mind` | MindAR OfflineCompiler output from `target.jpg` | Target recognition. |
-| `card-v2/target.png` and `target.mind` | Perspective-corrected card-only crop from a clear, unaugmented frame of the owner's local recording | Active target after replay comparison; full recording, hand, browser UI, and background are not published as assets. |
+| `card-v2/target.png` and `target.mind` | Perspective-corrected card-only crop from a clear, unaugmented frame of the owner's local recording | Previous card target retained for comparison; full recording, hand, browser UI, and background are not published as assets. |
 | `dmcc-v1/target.png` and `target.mind` | Crop of the owner's `DMCC Smarter Chemistry Logo.png`, removing white margins without altering logo detail | Current active target; replaces the card reference in viewer configuration. Original PNG stays local. Crop/checksums/features are in `dmcc-target-preparation.json`. |
 | `demo.mp4`, `poster.jpg` | Locally generated grid, rings, text, and animated progress line; 640×360, 24fps, 6 seconds, no audio | Clearly labelled prototype content. |
 | Gold orbital sculpture | Procedural icosahedron, torus rings, and base in `src/scene.ts` | Placeholder 3D content. No extracted/copied character from reference video. |
