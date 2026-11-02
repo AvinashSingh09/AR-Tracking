@@ -1,0 +1,87 @@
+{
+  "source": "NEW IMAGES/Golden Archway Over a Futuristic Waterfront.png",
+  "sourceSha256": "e42f1fcbf5fb0972053959e1d716aa4165b45ac1bca727ff3e2ab5a5c6120c81",
+  "image": "public/content/archway-v1/target.png",
+  "dimensions": [
+    941,
+    1671
+  ],
+  "overlaySource": "NEW IMAGES/Unknown-16.png",
+  "overlay": "public/content/archway-v1/overlay.png",
+  "overlayDimensions": [
+    941,
+    1672
+  ],
+  "overlaySha256": "753b40b352717611250ba50433344c9ad8828efe186b4fcbbc9f5ffc1ad165e1",
+  "operation": "Both original images copied byte-for-byte. Track the full background; map the complete invitation over the same plane, centered and matching all four target edges. The one-pixel source height difference is fitted by texture mapping, without cropping or modifying either file.",
+  "note": "Synthetic tracking and alignment checks do not establish physical print or phone reliability.",
+  "imageSha256": "e42f1fcbf5fb0972053959e1d716aa4165b45ac1bca727ff3e2ab5a5c6120c81",
+  "compiledSha256": "083b21967ca5c23938ca53f36bbc68a6e52f5a8e517c1ae4edf9e447866136ef",
+  "trackingPoints": [
+    24,
+    21
+  ],
+  "compiler": "mind-ar 1.2.5 OfflineCompiler; CPU; @napi-rs/canvas 0.1.80",
+  "featureSummary": [
+    {
+      "matching": [
+        {
+          "maxima": 190,
+          "minima": 90
+        },
+        {
+          "maxima": 184,
+          "minima": 93
+        },
+        {
+          "maxima": 165,
+          "minima": 93
+        },
+        {
+          "maxima": 160,
+          "minima": 94
+        },
+        {
+          "maxima": 132,
+          "minima": 89
+        },
+        {
+          "maxima": 116,
+          "minima": 92
+        },
+        {
+          "maxima": 106,
+          "minima": 82
+        },
+        {
+          "maxima": 77,
+          "minima": 64
+        },
+        {
+          "maxima": 50,
+          "minima": 53
+        },
+        {
+          "maxima": 36,
+          "minima": 24
+        },
+        {
+          "maxima": 30,
+          "minima": 17
+        }
+      ],
+      "tracking": [
+        {
+          "width": 256,
+          "height": 455,
+          "points": 24
+        },
+        {
+          "width": 128,
+          "height": 227,
+          "points": 21
+        }
+      ]
+    }
+  ]
+}

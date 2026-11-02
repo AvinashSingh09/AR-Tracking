@@ -9,6 +9,7 @@ output/
 /*.mp4
 /Visiting Card.jpeg
 /DMCC Smarter Chemistry Logo.png
+/NEW IMAGES/
 .env
 .env.*
 !.env.example

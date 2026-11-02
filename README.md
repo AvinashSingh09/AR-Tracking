@@ -1,12 +1,21 @@
-# AR Invite — DMCC image target
+# AR Invite — image overlay
 
-Phase 0 of [the PRD](PRD.md): a camera-based MindAR image tracker, an animated Three.js sculpture, and a video-textured panel. This is a working technical prototype, not the completed PRD or a phone-validated release.
+**Live HTTPS prototype:** [ar-invite.onrender.com](https://ar-invite.onrender.com).
 
-**Live HTTPS prototype:** [ar-invite.onrender.com](https://ar-invite.onrender.com). Hosted on Render from this repository's `main` branch. Select Start and allow camera access. Deployment and desktop simulated-feed verification are recorded in [the deployment guide](docs/RENDER_DEPLOYMENT.md); physical mobile validation remains pending.
+Tap **Start** and allow the camera. Scan the plain golden archway background to reveal the complete invitation directly over it. The image follows the background as it moves, disappears when tracking is lost, and returns on reacquisition. The only persistent camera control is the small × to exit. No video, sound controls, or sculpture is loaded in this experience.
 
-## Run locally
+## Target and overlay
 
-Tested here with Node 20.16.0 and npm 10.8.1. Dependencies are pinned in `package-lock.json`.
+| Role | Owner-supplied file | Published asset |
+| --- | --- | --- |
+| Scan target | `NEW IMAGES/Golden Archway Over a Futuristic Waterfront.png` | `public/content/archway-v1/target.png` and `target.mind` |
+| Revealed invitation | `NEW IMAGES/Unknown-16.png` | `public/content/archway-v1/overlay.png` |
+
+The original images are copied byte-for-byte. The full 941×1671 background is compiled for recognition. The 941×1672 overlay is fitted to the same four corners; the one-pixel height difference does not require a crop. The overlay is an opaque image over the target plane, so the invitation's complete composition appears in place. No details or text have been generated or repainted. Preparation, checksums, and feature counts are in [the target record](docs/archway-target-preparation.json).
+
+Display the plain background on another screen or print it flat. Keep the complete artwork visible, with diffuse light and minimal glare. The scanning phone cannot scan an image on its own screen. Similarity between the two supplied images is expected: recognition uses the background's existing architectural detail, while the invitation artwork supplies the added text.
+
+## Run and build
 
 ```powershell
 cd 'G:\Projects\AR Invite'
@@ -14,78 +23,34 @@ npm ci
 npm run dev
 ```
 
-Open **http://localhost:5173** on this computer. The page shows only **Start**. Tapping it opens an edge-to-edge camera scanner; browser fullscreen is also requested where supported. A small × closes the scanner and stops the camera. Scanning guidance disappears after the target is found. Playback/replay prompts appear only when needed. The earlier marketing page, preview, and ordinary-player interface have been removed at the owner's request.
-
-For the built artifact:
+Open **http://localhost:5173** on this computer. For a production build:
 
 ```powershell
+npm test
 npm run build
 npm run preview
 ```
 
-Open **http://localhost:4173**. The deployable files are in `dist/`; both `index.html` and `ar.html` are required. The Render site publishes that same multi-page build.
+The preview is **http://localhost:4173**. Both `index.html` and `ar.html` must be deployed from `dist/`. Node is pinned in `.node-version`; dependencies are pinned in `package-lock.json`.
 
-## Test on a phone
+Phone camera access requires HTTPS. Use the live Render URL, or `npm run dev:https -- --port 5174` on the same local network with its development certificate trusted on the phone. Plain HTTP network addresses cannot provide normal mobile camera access.
 
-Phone camera access requires a secure context. A plain `http://192.168...` development URL is insufficient.
+## Change artwork
 
-```powershell
-npm run dev:https -- --port 5174
-```
+Paths and the full target aspect ratio are in `src/config.ts`. `src/scene.ts` maps the overlay to a centered plane exactly one target-width wide; it must stay coplanar to match the printed background. `src/ar.ts` loads the overlay before tracking starts, handles camera/worker lifetime, and uses the existing adaptive pose smoothing. It stops the camera and disposes GPU resources on exit or when the page is hidden. No camera upload endpoint or analytics is configured.
 
-Use the HTTPS Network URL printed by Vite on a phone connected to the same network. The development certificate is self-signed: the phone/browser must trust it before this can be treated as a valid camera test. If the browser still rejects capture, use a trusted HTTPS preview deployment or a properly trusted local certificate. This setup does not provide a public URL or a production certificate. Check local firewall access if the URL cannot be reached.
-
-1. Print/display the supplied `DMCC Smarter Chemistry Logo.png`, or use the cropped logo at `public/content/dmcc-v1/target.png` on another screen. Point at its logo area. The phone cannot scan an image displayed on its own screen.
-2. Open the viewer and tap Start. Allow camera access.
-3. Keep the entire target visible, add diffuse light, and avoid glare.
-4. The video panel appears above the logo and faces the same viewing side as the artwork.
-5. Check that the gold sculpture animates and the video visibly changes. The supplied portrait invitation plays automatically, initially muted. Tap Sound off to enable its audio.
-6. Remove the card: the scene should disappear and playback should pause. Return it: playback should continue unless manually paused or completed.
-7. Use Replay when the invitation ends, then use × to exit. The camera should stop on exit or when the page is hidden. Browser fullscreen may hide address bars; the camera still fills the viewport when that API is unavailable.
-8. Test the actual print/display and lighting you will use. A desktop simulation does not establish physical-phone tracking reliability.
-
-Record Android Chrome and iPhone Safari results in `docs/PHASE_0_STATUS.md`. Gate G0 stays open until those physical-device checks pass.
-
-## Included assets
-
-- `Visiting Card.jpeg`: original supplied photograph, untouched.
-- `public/content/card-v1/target.jpg`: perspective-straightened, cropped, upright tracking candidate.
-- `public/content/card-v1/target.mind`: compiled feature data for that exact candidate.
-- `public/content/card-v2/target.png` and `target.mind`: previous card reference, retained for comparisons.
-- `DMCC Smarter Chemistry Logo.png`: original new supplied artwork, untouched and kept local.
-- `public/content/dmcc-v1/target.png` and `target.mind`: active reference, cropped to the existing logo to remove extensive white margins. No design details were repainted or generated. This is the only target loaded by the viewer.
-- `Invite Video.mp4`: original supplied portrait invitation, untouched and kept local.
-- `public/content/invite-v1/invite.mp4` and `poster.jpg`: active 720×1280 invitation and a still from it. Video frames are copied without re-encoding; audio is converted to AAC-LC for browser compatibility, and MP4 metadata is moved to the front for streaming. Playback starts muted with a small sound toggle after acquisition.
-- `public/content/unbranded-v1/demo.mp4` and `poster.jpg`: previous text-free procedural sample, retained as history and not loaded by the viewer. Regenerate with `python scripts/generate-demo.py` (requires Pillow and ffmpeg).
-- The gold orbital sculpture is procedural Three.js geometry, not a final character/avatar or a GLB model.
-
-The active DMCC target contains 35 and 37 tracking points at the compiler's two tracking scales. That is descriptive feature data, not a phone reliability score. Recognition of the logo within the full supplied artwork passed a desktop synthetic-camera check; physical print/display trials remain necessary.
-
-## Change content
-
-Paths and aspect ratios are in `src/config.ts`. Scene placement, sculpture, lighting, and video geometry are in `src/scene.ts`. This prototype uses a typed configuration module; the full validated invitation-manifest system is deferred until after G0.
-
-If changing target artwork, replace the active prepared PNG and compile it again:
+Recompile after changing the background:
 
 ```powershell
 npm run compile-target
 ```
 
-The compiler uses MindAR's CPU OfflineCompiler and an explicit `canvas` override to `@napi-rs/canvas`, avoiding a platform-specific node-canvas build. Current crop coordinates, dimensions, checksums, and feature counts are in `docs/dmcc-target-preparation.json`. Previous card records remain in `docs/target-v2-preparation.json` and `docs/target-preparation.json`. The compiler defaults to DMCC and accepts an explicit image path and metadata path, for example `npm run compile-target -- public/content/card-v2/target.png docs/target-v2-preparation.json`. Do not replace `.mind` data without matching the reference and its artwork aspect ratio.
+The compiler defaults to the archway background and updates its preparation record. For an earlier target, pass both image and metadata paths explicitly. Compilation uses MindAR 1.2.5 OfflineCompiler on CPU with `canvas` overridden to `@napi-rs/canvas`.
 
-## Checks and architecture
+## Verification and history
 
-```powershell
-npm test
-npm run build
-```
+Build/tests and desktop synthetic-camera recognition/alignment checks are recorded in [the verification record](docs/archway-verification.json) and are distinct from physical device validation. Test the actual print or display on Android Chrome and iPhone Safari before treating tracking as phone-validated. Existing Phase 0 physical-device gate G0 remains open.
 
-`src/policy.mjs` keeps playback intent separate from temporary tracking loss. The heavy tracker is deferred until Start. It runs in a same-origin iframe so each camera session has an isolated worker/GPU realm; explicit stop logic ends capture, terminates its worker, and disposes rendering resources before the frame is discarded. The initial screen loads no 3D preview or camera. Assets and scripts are served locally; no analytics or camera-upload endpoint is configured.
+Previous DMCC, card, invitation-video, and procedural sample assets remain in `public/content/` for history; the current configuration only loads `archway-v1`. The original `NEW IMAGES` folder stays local and ignored. [Deployment settings](docs/RENDER_DEPLOYMENT.md), [tracking smoothing](docs/TRACKING_SMOOTHING.md), and [asset records](docs/ASSETS_AND_DEPENDENCIES.md) provide maintenance context. Older validation records apply to their named targets, not automatically to the new artwork.
 
-The tracked scene uses adaptive render-time pose smoothing. Small shakes receive stronger damping while larger movements catch up quickly; reacquisition resets to the current pose. Tuning and verification details are in [Tracking smoothing](docs/TRACKING_SMOOTHING.md).
-
-The production bundle includes a large MindAR/TensorFlow chunk, generating Vite's chunk-size advisory. That runtime is loaded through the separate scanner page. Mobile startup/frame-time budgets remain to be measured.
-
-Known Phase 0 boundaries: no final animated GLB, no final content approvals, no QR generation, no admin/RSVP backend, no validated device support matrix, and no calibrated print-size measurements. Leaving/hiding AR tears down the session; a fresh or resumed session restarts the invitation muted. Preferences and timeline survive target loss within a session, but are not persisted across complete session teardown. The complete PRD's resume-state persistence and other later-phase requirements are not yet complete.
-
-Dependency and asset notes are in `docs/ASSETS_AND_DEPENDENCIES.md`.
+The tracker runtime still produces Vite's large-chunk advisory. It loads only after Start; physical mobile startup and frame-time budgets remain unmeasured.

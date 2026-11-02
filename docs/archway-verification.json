@@ -1,0 +1,28 @@
+{
+  "verifiedOn": "2026-11-02",
+  "scope": "Desktop Chrome with synthetic camera input; physical print and mobile validation pending",
+  "target": "public/content/archway-v1/target.png",
+  "overlay": "public/content/archway-v1/overlay.png",
+  "initialVisibleButtons": [
+    "Start"
+  ],
+  "cameraVisibleButtons": [
+    "Exit camera"
+  ],
+  "checks": {
+    "backgroundRecognized": true,
+    "completeOverlayVisuallyReviewed": true,
+    "rotatedBackgroundRecognized": true,
+    "rotatedOverlayVisuallyReviewed": true,
+    "targetLossHidesOverlay": true,
+    "targetReturnRevealsOverlay": true,
+    "cameraTracksStopOnExit": true,
+    "noVideoAssetRequests": true,
+    "onlyCameraVideoElement": true,
+    "overlayFailureReturnsToStartWithMessage": true,
+    "buildPassed": true,
+    "existingTestsPassed": 6
+  },
+  "screenshots": "Ignored output/playwright/archway-{found,lost,reacquired,rotated}.png",
+  "note": "The overlay fills the target plane. The source images remain byte-identical; their one-pixel height difference is fitted by texture mapping."
+}
