@@ -1,8 +1,9 @@
 import * as THREE from 'three';
 import { Controller } from 'mind-ar/dist/mindar-image.prod.js';
 import { createScene } from './scene';
-import { content } from './config';
+import { content, tracking } from './config';
 import { shouldPlay, cameraMessage } from './policy.mjs';
+import { PoseSmoother } from './pose-smoother.mjs';
 
 const send = (type: string, data: object = {}) => parent.postMessage({ source: 'ar-invite', type, ...data }, location.origin);
 const abort = new AbortController();
@@ -17,6 +18,9 @@ video.hidden = true; video.dataset.contentVideo = 'true'; document.body.append(v
 const world = createScene(video);
 const scene = new THREE.Scene(); const camera = new THREE.PerspectiveCamera();
 const root = new THREE.Group(); root.matrixAutoUpdate = false; root.visible = false; root.add(world.root); scene.add(root);
+const pose = new PoseSmoother(tracking.smoothing);
+const measuredPose = new THREE.Matrix4();
+const targetToAnchor = new THREE.Matrix4();
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5)); document.body.append(renderer.domElement);
 const clock = new THREE.Clock();
@@ -83,8 +87,9 @@ async function start() {
         const found = data.worldMatrix !== null;
         root.visible = found;
         if (found) {
-          root.matrix.fromArray(data.worldMatrix).multiply(new THREE.Matrix4().compose(new THREE.Vector3(width / 2, height / 2, 0), new THREE.Quaternion(), new THREE.Vector3(width, width, width)));
-        }
+          measuredPose.fromArray(data.worldMatrix).multiply(targetToAnchor);
+          pose.setTarget(measuredPose);
+        } else pose.reset();
         if (found !== tracked) { tracked = found; send(found ? 'found' : 'lost'); void sync(); }
       }
     });
@@ -94,10 +99,16 @@ async function start() {
     if (disposed) return;
     const { dimensions } = controller.addImageTargetsFromBuffer(buffer);
     [width, height] = dimensions[0];
+    targetToAnchor.compose(new THREE.Vector3(width / 2, height / 2, 0), new THREE.Quaternion(), new THREE.Vector3(width, width, width));
     resize(); controller.dummyRun(cameraVideo);
     if (disposed) return;
     controller.processVideo(cameraVideo);
-    renderer.setAnimationLoop(() => { world.update(clock.getDelta(), permitted() && !video.paused && video.readyState >= 3); renderer.render(scene, camera); });
+    renderer.setAnimationLoop(() => {
+      const delta = clock.getDelta();
+      if (root.visible) root.matrix.copy(pose.update(delta));
+      world.update(delta, permitted() && !video.paused && video.readyState >= 3);
+      renderer.render(scene, camera);
+    });
     send('ready');
   } catch (error) { if (!disposed) { stop(); send('error', { message: cameraMessage(error) }); } }
 }

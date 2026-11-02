@@ -7,3 +7,14 @@ export const content = {
   aspect: 960 / 570,
   videoAspect: 640 / 360,
 };
+
+// Seconds, fractions of target width, and radians. Kept outside the tracking loop
+// so physical-device feedback can tune responsiveness without changing lifecycle code.
+export const tracking = {
+  smoothing: {
+    stationaryHalfLife: 0.065,
+    movingHalfLife: 0.012,
+    translationResponse: 0.04,
+    rotationResponse: 0.12,
+  },
+};

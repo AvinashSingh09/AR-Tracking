@@ -77,6 +77,8 @@ npm run build
 
 `src/policy.mjs` keeps playback intent separate from temporary tracking loss. The heavy tracker is deferred until Start. It runs in a same-origin iframe so each camera session has an isolated worker/GPU realm; explicit stop logic ends capture, terminates its worker, and disposes rendering resources before the frame is discarded. The initial screen loads no 3D preview or camera. Assets and scripts are served locally; no analytics or camera-upload endpoint is configured.
 
+The tracked scene uses adaptive render-time pose smoothing. Small shakes receive stronger damping while larger movements catch up quickly; reacquisition resets to the current pose. Tuning and verification details are in [Tracking smoothing](docs/TRACKING_SMOOTHING.md).
+
 The production bundle includes a large MindAR/TensorFlow chunk, generating Vite's chunk-size advisory. That runtime is loaded through the separate scanner page. Mobile startup/frame-time budgets remain to be measured.
 
 Known Phase 0 boundaries: no final animated GLB, no final content approvals, no public hosting/QR, no admin/RSVP backend, no validated device support matrix, and no calibrated print-size measurements. Leaving/hiding AR tears down the session; a fresh or resumed session restarts the demo muted. Preferences and timeline survive target loss within a session, but are not persisted across complete session teardown. The complete PRD's resume-state persistence and other later-phase requirements are not yet complete.
