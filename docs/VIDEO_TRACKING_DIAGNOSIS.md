@@ -49,3 +49,9 @@ Settings are centralized in `src/tracking-profile.mjs`. Higher smoothing is not 
 - A new physical-card trial on the reporting phone and the broader device matrix are still required before declaring the tracking reliable. Synthetic replay cannot close G0.
 
 References: [MindAR tracking configuration](https://hiukim.github.io/mind-ar-js-doc/quick-start/tracking-config/), [pinned Controller behavior](https://github.com/hiukim/mind-ar-js/blob/master/src/image-target/controller.js).
+
+## Release verification
+
+App commit `36cbee597e9b3e7753782e9bdb1e04adbf53f660` was deployed to [AR Invite](https://ar-invite.onrender.com). Render deploy `dep-dbk3d7vb9u1s73cah040` reported `live`. The scanner HTML, its JavaScript bundle, and the v2 PNG/compiled target matched the local production build. The public URL's synthetic-feed smoke test decoded and played the 640px sample video, stopped camera tracks on exit, and produced no observed JavaScript page/console errors. The project build, type check, and all six tests passed under Node 22.23.4.
+
+This release improves the reproduced case but does not eliminate every loss interval. A fresh recording/physical trial with the reporting phone is still needed; a clean original card artwork export would provide a stronger reference than a compressed screen-recording crop.

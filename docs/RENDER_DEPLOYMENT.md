@@ -54,8 +54,8 @@ The original reference MP4, raw card photograph, review stills, browser artifact
 | Service ID | `srv-dbk2qv2jnfac739e7k70` |
 | Initial deploy ID | `dep-dbk2qvijnfac739e7kug` |
 | Initial deployed app commit | `1a5178c23a616710f280193c5505781552c37b68` |
-| Current deployed app commit | `65bd11cf9eaf1cbdc9248d6c36f09b161854ae87` |
-| Current deploy ID | `dep-dbk2vutg1s2s738i2jqg` |
+| Current deployed app commit | `36cbee597e9b3e7753782e9bdb1e04adbf53f660` |
+| Current deploy ID | `dep-dbk3d7vb9u1s73cah040` |
 | Deployment status | `live` |
 | Dashboard | [Render service](https://dashboard.render.com/static/srv-dbk2qv2jnfac739e7k70) |
 
@@ -65,6 +65,6 @@ Desktop Chrome verification against the public URL confirmed a secure context, e
 
 Physical-card recognition, lighting tolerance, and Android/iPhone performance remain unverified. Deployment does not close G0. Future documentation-only commits can use `[skip render]` to avoid an unnecessary rebuild; application changes should deploy normally through the configured commit trigger.
 
-The current app adds adaptive pose smoothing in response to user-reported slight jitter. Its live build and desktop synthetic-feed checks passed; details and evidence boundaries are in [Tracking smoothing](TRACKING_SMOOTHING.md). Physical-card smoothness on the reporting phone remains to be retested.
+The current app replaces the reference with card-v2 and tunes the native tracker/presentation response after diagnosing the owner's screen recording. It also corrects the video panel's viewing angle. Its live build, deployed v2 asset checks, and desktop synthetic-feed video/exit checks passed. Paired recording replays and their limitations are documented in [Recording diagnosis](VIDEO_TRACKING_DIAGNOSIS.md). Physical-card smoothness on the reporting phone remains to be retested.
 
 References checked on 2 November 2026: [Static Sites](https://render.com/docs/static-sites), [Node version configuration](https://render.com/docs/node-version).

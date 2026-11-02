@@ -7,6 +7,7 @@
 | `Visiting Card.jpeg` | User-supplied 360 Bright Media card photograph | Original retained in workspace; reproduction rights to be confirmed before public publishing. |
 | `target.jpg` | Geometric crop/rectification and 90-degree rotation of that photograph | Tracking candidate and guide. Coordinates and checksums are recorded. |
 | `target.mind` | MindAR OfflineCompiler output from `target.jpg` | Target recognition. |
+| `card-v2/target.png` and `target.mind` | Perspective-corrected card-only crop from a clear, unaugmented frame of the owner's local recording | Active target after replay comparison; full recording, hand, browser UI, and background are not published as assets. |
 | `demo.mp4`, `poster.jpg` | Locally generated grid, rings, text, and animated progress line; 640×360, 24fps, 6 seconds, no audio | Clearly labelled prototype content. |
 | Gold orbital sculpture | Procedural icosahedron, torus rings, and base in `src/scene.ts` | Placeholder 3D content. No extracted/copied character from reference video. |
 | `favicon.svg` | Simple project-authored text/circle mark | Prototype icon, not an approved replacement for the supplied brand logo. |
