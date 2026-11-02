@@ -5,6 +5,7 @@ document.querySelector('#app')!.innerHTML = [
   '<main id="landing"><button id="start" type="button">Start</button><p id="error" role="alert" hidden></p></main>',
   '<section id="scanner" aria-label="Image target scanner" hidden><div id="viewport"></div>',
   '<button id="exit" type="button" aria-label="Exit camera">×</button>',
+  '<button id="sound" type="button" aria-label="Turn sound on" aria-pressed="false" hidden>Sound off</button>',
   '<div id="feedback"><p id="status" role="status" aria-live="polite"></p>',
   '<button id="play" type="button" hidden>Tap to play</button></div></section>',
 ].join('');
@@ -24,6 +25,7 @@ function stop() {
   frame?.contentWindow?.postMessage({ type: 'stop' }, location.origin);
   frame?.remove(); frame = undefined;
   $('scanner').hidden = true; $('landing').hidden = false; $('play').hidden = true;
+  $('sound').hidden = true;
   enteredFullscreen = false;
   if (document.fullscreenElement) void document.exitFullscreen().catch(() => {});
 }
@@ -37,6 +39,8 @@ $('start').addEventListener('click', () => {
     fail('Camera access requires HTTPS and a trusted certificate.'); return;
   }
   $('landing').hidden = true; $('scanner').hidden = false; $('play').hidden = true;
+  $('sound').hidden = true; $('sound').textContent = 'Sound off';
+  $('sound').setAttribute('aria-label', 'Turn sound on'); $('sound').setAttribute('aria-pressed', 'false');
   status('Allow camera access to begin.');
   // Always fill the viewport; also hide browser chrome where supported.
   if ($('scanner').requestFullscreen) {
@@ -54,8 +58,14 @@ addEventListener('message', e => {
   if (!frame || e.origin !== location.origin || e.source !== frame.contentWindow || e.data?.source !== 'ar-invite') return;
   const { type, message } = e.data;
   if (type === 'status') status(message);
-  if (type === 'ready' || type === 'lost') { clearTimeout(timeout); status(content.scanHint); }
-  if (type === 'found') { clearTimeout(timeout); status(''); }
+  if (type === 'ready' || type === 'lost') { clearTimeout(timeout); status(content.scanHint); $('sound').hidden = true; }
+  if (type === 'found') { clearTimeout(timeout); status(''); $('sound').hidden = false; }
+  if (type === 'sound') {
+    const muted = e.data.muted;
+    $('sound').textContent = muted ? 'Sound off' : 'Sound on';
+    $('sound').setAttribute('aria-label', muted ? 'Turn sound on' : 'Turn sound off');
+    $('sound').setAttribute('aria-pressed', String(!muted));
+  }
   if (type === 'playing') { $('play').hidden = true; status(''); }
   if (type === 'buffering') status('Loading video…');
   if (type === 'blocked' || type === 'ended' || type === 'media-error') {
@@ -67,6 +77,7 @@ addEventListener('message', e => {
   if (type === 'error') fail(message);
 });
 $('play').addEventListener('click', () => frame?.contentWindow?.postMessage({ type: playCommand }, location.origin));
+$('sound').addEventListener('click', () => frame?.contentWindow?.postMessage({ type: 'mute' }, location.origin));
 $('exit').addEventListener('click', stop);
 document.addEventListener('visibilitychange', () => { if (document.hidden && frame) stop(); });
 document.addEventListener('fullscreenchange', () => {

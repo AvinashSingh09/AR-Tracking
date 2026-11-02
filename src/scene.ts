@@ -19,10 +19,13 @@ export function createScene(video: HTMLVideoElement, includeCard = false) {
   const texture = new THREE.VideoTexture(video); texture.colorSpace = THREE.SRGBColorSpace;
   const poster = new THREE.TextureLoader().load(content.poster); poster.colorSpace = THREE.SRGBColorSpace;
   const material = new THREE.MeshBasicMaterial({ map: poster, side: THREE.DoubleSide });
-  const panel = new THREE.Mesh(new THREE.PlaneGeometry(.86, .86 / content.videoAspect), material);
+  // Bound both dimensions so portrait invitations fit above the target too.
+  const panelWidth = Math.min(.86, 1.05 * content.videoAspect);
+  const panelHeight = panelWidth / content.videoAspect;
+  const panel = new THREE.Mesh(new THREE.PlaneGeometry(panelWidth, panelHeight), material);
   // Face the same viewing side as an upright visiting card. The previous 90°
   // rotation put the screen edge-on and amplified small pitch errors.
-  panel.position.set(0, .58, .06); root.add(panel);
+  panel.position.set(0, .5 / content.aspect + panelHeight / 2 + .1, .06); root.add(panel);
   if (includeCard) {
     const card = new THREE.TextureLoader().load(content.image); card.colorSpace = THREE.SRGBColorSpace;
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1 / content.aspect), new THREE.MeshBasicMaterial({ map: card, side: THREE.DoubleSide }));

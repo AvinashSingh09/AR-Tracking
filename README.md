@@ -39,9 +39,9 @@ Use the HTTPS Network URL printed by Vite on a phone connected to the same netwo
 2. Open the viewer and tap Start. Allow camera access.
 3. Keep the entire target visible, add diffuse light, and avoid glare.
 4. The video panel appears above the logo and faces the same viewing side as the artwork.
-5. Check that the gold sculpture animates and the video visibly changes. The six-second sample is deliberately silent.
+5. Check that the gold sculpture animates and the video visibly changes. The supplied portrait invitation plays automatically, initially muted. Tap Sound off to enable its audio.
 6. Remove the card: the scene should disappear and playback should pause. Return it: playback should continue unless manually paused or completed.
-7. Use Replay when the sample ends, then use × to exit. The camera should stop on exit or when the page is hidden. Browser fullscreen may hide address bars; the camera still fills the viewport when that API is unavailable.
+7. Use Replay when the invitation ends, then use × to exit. The camera should stop on exit or when the page is hidden. Browser fullscreen may hide address bars; the camera still fills the viewport when that API is unavailable.
 8. Test the actual print/display and lighting you will use. A desktop simulation does not establish physical-phone tracking reliability.
 
 Record Android Chrome and iPhone Safari results in `docs/PHASE_0_STATUS.md`. Gate G0 stays open until those physical-device checks pass.
@@ -54,7 +54,9 @@ Record Android Chrome and iPhone Safari results in `docs/PHASE_0_STATUS.md`. Gat
 - `public/content/card-v2/target.png` and `target.mind`: previous card reference, retained for comparisons.
 - `DMCC Smarter Chemistry Logo.png`: original new supplied artwork, untouched and kept local.
 - `public/content/dmcc-v1/target.png` and `target.mind`: active reference, cropped to the existing logo to remove extensive white margins. No design details were repainted or generated. This is the only target loaded by the viewer.
-- `public/content/unbranded-v1/demo.mp4` and `poster.jpg`: active six-second, silent, text-free procedural motion graphics. Generate them with `python scripts/generate-demo.py` (requires Pillow and ffmpeg). The earlier branded media is retained as a historical asset and is not loaded by the viewer.
+- `Invite Video.mp4`: original supplied portrait invitation, untouched and kept local.
+- `public/content/invite-v1/invite.mp4` and `poster.jpg`: active 720×1280 invitation and a still from it. Video frames are copied without re-encoding; audio is converted to AAC-LC for browser compatibility, and MP4 metadata is moved to the front for streaming. Playback starts muted with a small sound toggle after acquisition.
+- `public/content/unbranded-v1/demo.mp4` and `poster.jpg`: previous text-free procedural sample, retained as history and not loaded by the viewer. Regenerate with `python scripts/generate-demo.py` (requires Pillow and ffmpeg).
 - The gold orbital sculpture is procedural Three.js geometry, not a final character/avatar or a GLB model.
 
 The active DMCC target contains 35 and 37 tracking points at the compiler's two tracking scales. That is descriptive feature data, not a phone reliability score. Recognition of the logo within the full supplied artwork passed a desktop synthetic-camera check; physical print/display trials remain necessary.
@@ -84,6 +86,6 @@ The tracked scene uses adaptive render-time pose smoothing. Small shakes receive
 
 The production bundle includes a large MindAR/TensorFlow chunk, generating Vite's chunk-size advisory. That runtime is loaded through the separate scanner page. Mobile startup/frame-time budgets remain to be measured.
 
-Known Phase 0 boundaries: no final animated GLB, no final content approvals, no public hosting/QR, no admin/RSVP backend, no validated device support matrix, and no calibrated print-size measurements. Leaving/hiding AR tears down the session; a fresh or resumed session restarts the demo muted. Preferences and timeline survive target loss within a session, but are not persisted across complete session teardown. The complete PRD's resume-state persistence and other later-phase requirements are not yet complete.
+Known Phase 0 boundaries: no final animated GLB, no final content approvals, no QR generation, no admin/RSVP backend, no validated device support matrix, and no calibrated print-size measurements. Leaving/hiding AR tears down the session; a fresh or resumed session restarts the invitation muted. Preferences and timeline survive target loss within a session, but are not persisted across complete session teardown. The complete PRD's resume-state persistence and other later-phase requirements are not yet complete.
 
 Dependency and asset notes are in `docs/ASSETS_AND_DEPENDENCIES.md`.
