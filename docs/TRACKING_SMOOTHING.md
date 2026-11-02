@@ -38,4 +38,10 @@ The build and six tests passed locally, including deterministic checks that:
 
 Desktop Chrome integration using the real tracker and a synthetic camera feed also passed recognition/video, blank-frame loss, target reacquisition, and camera-track shutdown on exit, with no observed JavaScript page/console errors. These checks establish integration and filter behavior; actual smoothness on the reporting phone still requires a repeat physical-card trial.
 
+## Deployment
+
+Published to [AR Invite](https://ar-invite.onrender.com) from app commit `65bd11cf9eaf1cbdc9248d6c36f09b161854ae87`. Render deploy `dep-dbk2vutg1s2s738i2jqg` reported live. The public scanner HTML and `/assets/ar-BU3L6LIL.js` matched the local build; bundle SHA-256 was `cbc3e37a7e3b4f8c072dad58647579406a89a35823cb5787d16e28213f5252a9`.
+
+The deployed desktop synthetic-feed check produced decoded 640px video with advancing playback time, ended camera tracks after exit, and no observed page/console errors. Refresh or reopen the viewer for the updated scanner; a session already open before deployment retains its old JavaScript until reloaded.
+
 Reference: [MindAR tracking configuration and smoothing/latency tradeoff](https://hiukim.github.io/mind-ar-js-doc/quick-start/tracking-config/).

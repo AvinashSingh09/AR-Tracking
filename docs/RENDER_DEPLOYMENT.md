@@ -53,7 +53,9 @@ The original reference MP4, raw card photograph, review stills, browser artifact
 | Render workspace | My Workspace |
 | Service ID | `srv-dbk2qv2jnfac739e7k70` |
 | Initial deploy ID | `dep-dbk2qvijnfac739e7kug` |
-| Deployed app commit | `1a5178c23a616710f280193c5505781552c37b68` |
+| Initial deployed app commit | `1a5178c23a616710f280193c5505781552c37b68` |
+| Current deployed app commit | `65bd11cf9eaf1cbdc9248d6c36f09b161854ae87` |
+| Current deploy ID | `dep-dbk2vutg1s2s738i2jqg` |
 | Deployment status | `live` |
 | Dashboard | [Render service](https://dashboard.render.com/static/srv-dbk2qv2jnfac739e7k70) |
 
@@ -62,5 +64,7 @@ The Render build used Node 22.23.4 and completed successfully. Public HTTPS fetc
 Desktop Chrome verification against the public URL confirmed a secure context, exactly one initial Start button, no pre-start camera frame, real tracker acquisition from a synthetic camera feed, decoded 640px content video with advancing playback time, a 1280×900 frame filling the viewport, and ended camera tracks after exit. No JavaScript page or console errors were observed. The JSON evidence is in `docs/render-verification.json`; screenshot inspection artifacts remain in ignored `output/`.
 
 Physical-card recognition, lighting tolerance, and Android/iPhone performance remain unverified. Deployment does not close G0. Future documentation-only commits can use `[skip render]` to avoid an unnecessary rebuild; application changes should deploy normally through the configured commit trigger.
+
+The current app adds adaptive pose smoothing in response to user-reported slight jitter. Its live build and desktop synthetic-feed checks passed; details and evidence boundaries are in [Tracking smoothing](TRACKING_SMOOTHING.md). Physical-card smoothness on the reporting phone remains to be retested.
 
 References checked on 2 November 2026: [Static Sites](https://render.com/docs/static-sites), [Node version configuration](https://render.com/docs/node-version).
