@@ -7,7 +7,7 @@ Deploy the current single-Start-button, full-viewport camera viewer as a **Stati
 | Setting | Value |
 | --- | --- |
 | Service type | Static Site |
-| Proposed service name | `ar-invite` (Render must confirm name availability) |
+| Service name | `ar-invite` |
 | Git source | `https://github.com/AvinashSingh09/AR-Tracking.git` |
 | Branch | `main`, unless the selected source uses another branch |
 | Root directory | Repository root |
@@ -18,7 +18,7 @@ Deploy the current single-Start-button, full-viewport camera viewer as a **Stati
 | Auto deploy | On commit to the selected branch |
 | Workspace | `My Workspace` — confirmed by the owner |
 
-Use the Render connector to create the site once the user has identified its workspace and supplied a pushed repository accessible to Render. The connected GitHub tools can write files to existing repositories but do not expose repository creation. The local GitHub CLI is not authenticated. Do not assume that the GitHub connector's authentication is shared with the CLI or with Render's private-repository integration.
+The site was created through the Render connector after the owner confirmed My Workspace and supplied the repository. GitHub upload used the connected GitHub tools; public Git fetch keeps the local checkout synchronized. The local GitHub CLI is not authenticated. Do not assume that connector authentication is shared with local CLI credentials.
 
 ## Source contents
 
@@ -46,6 +46,21 @@ The original reference MP4, raw card photograph, review stills, browser artifact
 
 ## Current deployment status
 
-Source repository and Render workspace supplied by the owner; source upload in progress. **Not deployed yet.** The first service creation will use the confirmed My Workspace destination.
+**Live:** [https://ar-invite.onrender.com](https://ar-invite.onrender.com), verified on 2 November 2026.
+
+| Record | Value |
+| --- | --- |
+| Render workspace | My Workspace |
+| Service ID | `srv-dbk2qv2jnfac739e7k70` |
+| Initial deploy ID | `dep-dbk2qvijnfac739e7kug` |
+| Deployed app commit | `1a5178c23a616710f280193c5505781552c37b68` |
+| Deployment status | `live` |
+| Dashboard | [Render service](https://dashboard.render.com/static/srv-dbk2qv2jnfac739e7k70) |
+
+The Render build used Node 22.23.4 and completed successfully. Public HTTPS fetches returned the correct viewer/scanner HTML, compiled target, card image, MP4, poster, and icon. HTML comparison normalized Windows/Linux line endings; binary assets matched the local build exactly. MP4 byte-range requests returned 206 with the expected 1024-byte response; a nonexistent media resource returned 404.
+
+Desktop Chrome verification against the public URL confirmed a secure context, exactly one initial Start button, no pre-start camera frame, real tracker acquisition from a synthetic camera feed, decoded 640px content video with advancing playback time, a 1280×900 frame filling the viewport, and ended camera tracks after exit. No JavaScript page or console errors were observed. The JSON evidence is in `docs/render-verification.json`; screenshot inspection artifacts remain in ignored `output/`.
+
+Physical-card recognition, lighting tolerance, and Android/iPhone performance remain unverified. Deployment does not close G0. Future documentation-only commits can use `[skip render]` to avoid an unnecessary rebuild; application changes should deploy normally through the configured commit trigger.
 
 References checked on 2 November 2026: [Static Sites](https://render.com/docs/static-sites), [Node version configuration](https://render.com/docs/node-version).

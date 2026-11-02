@@ -2,6 +2,8 @@
 
 Phase 0 of [the PRD](PRD.md): a camera-based MindAR image tracker, an animated Three.js sculpture, and a video-textured panel. This is a working technical prototype, not the completed PRD or a phone-validated release.
 
+**Live HTTPS prototype:** [ar-invite.onrender.com](https://ar-invite.onrender.com). Hosted on Render from this repository's `main` branch. Select Start and allow camera access. Deployment and desktop simulated-feed verification are recorded in [the deployment guide](docs/RENDER_DEPLOYMENT.md); physical mobile validation remains pending.
+
 ## Run locally
 
 Tested here with Node 20.16.0 and npm 10.8.1. Dependencies are pinned in `package-lock.json`.
@@ -21,7 +23,7 @@ npm run build
 npm run preview
 ```
 
-Open **http://localhost:4173**. The deployable files are in `dist/`; both `index.html` and `ar.html` are required. Deployment itself has not been performed.
+Open **http://localhost:4173**. The deployable files are in `dist/`; both `index.html` and `ar.html` are required. The Render site publishes that same multi-page build.
 
 ## Test on a phone
 

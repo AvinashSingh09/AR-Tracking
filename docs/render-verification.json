@@ -1,0 +1,108 @@
+{
+  "date": "2026-11-02",
+  "url": "https://ar-invite.onrender.com",
+  "serviceId": "srv-dbk2qv2jnfac739e7k70",
+  "deployId": "dep-dbk2qvijnfac739e7kug",
+  "commit": "1a5178c23a616710f280193c5505781552c37b68",
+  "status": "live",
+  "http": [
+    {
+      "path": "/",
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "bytes": 708,
+      "matchesLocal": true,
+      "framePolicy": null,
+      "csp": null
+    },
+    {
+      "path": "/ar.html",
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "bytes": 566,
+      "matchesLocal": true,
+      "framePolicy": null,
+      "csp": null
+    },
+    {
+      "path": "/content/card-v1/target.mind",
+      "status": 200,
+      "type": "binary/octet-stream",
+      "bytes": 396690,
+      "matchesLocal": true,
+      "framePolicy": null,
+      "csp": null
+    },
+    {
+      "path": "/content/card-v1/target.jpg",
+      "status": 200,
+      "type": "image/jpeg",
+      "bytes": 137653,
+      "matchesLocal": true,
+      "framePolicy": null,
+      "csp": null
+    },
+    {
+      "path": "/content/card-v1/demo.mp4",
+      "status": 200,
+      "type": "video/mp4",
+      "bytes": 28026,
+      "matchesLocal": true,
+      "framePolicy": null,
+      "csp": null
+    },
+    {
+      "path": "/content/card-v1/poster.jpg",
+      "status": 200,
+      "type": "image/jpeg",
+      "bytes": 29979,
+      "matchesLocal": true,
+      "framePolicy": null,
+      "csp": null
+    },
+    {
+      "path": "/favicon.svg",
+      "status": 200,
+      "type": "image/svg+xml",
+      "bytes": 266,
+      "matchesLocal": true,
+      "framePolicy": null,
+      "csp": null
+    },
+    {
+      "test": "videoRange",
+      "status": 206,
+      "contentRange": "bytes 0-1023/28026",
+      "bytes": 1024
+    },
+    {
+      "test": "missingAsset",
+      "status": 404
+    }
+  ],
+  "browser": {
+    "environment": "Desktop Chrome with fake camera video of compiled target",
+    "initialButtons": [
+      "Start"
+    ],
+    "preStartCameraFrames": 0,
+    "secureContext": true,
+    "decodedVideoWidth": 640,
+    "observedPlaybackSeconds": 0.1057,
+    "videoPaused": false,
+    "sourceVideoDisplay": "none",
+    "frameSize": [
+      1280,
+      900
+    ],
+    "viewportSize": [
+      1280,
+      900
+    ],
+    "tracksEndedAfterExit": true,
+    "remainingCameraFrames": 0,
+    "pageErrors": [],
+    "consoleErrors": 0
+  },
+  "physicalMobileTested": false
+}
